@@ -94,7 +94,8 @@
           "value": "immediate",
           "synonyms": [
             "early",
-            "instant"
+            "instant",
+            "quick"
           ]
         },
         {
@@ -118,9 +119,10 @@
         },
         {
           "type": "synonyms",
-          "value": "special items",
+          "value": "specials",
           "synonyms": [
-            "specials"
+            "special",
+            "Special item"
           ]
         },
         {
@@ -158,6 +160,21 @@
             "GM",
             "Good Morning",
             "Gud Morn"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "immediate",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "immediate",
+          "synonyms": [
+            "instant",
+            "quick",
+            "urgent"
           ]
         }
       ],
@@ -431,7 +448,7 @@
           "mcr": true
         }
       },
-      "conditions": "#Enquiry || @enquiry",
+      "conditions": "@enquiry",
       "digress_in": "returns",
       "dialog_node": "node_10_1602999327725",
       "digress_out": "allow_all_never_return",
@@ -469,18 +486,6 @@
     },
     {
       "type": "standard",
-      "title": "Specials",
-      "parent": "node_10_1602999327725",
-      "metadata": {
-        "_customization": {
-          "mcr": true
-        }
-      },
-      "conditions": "@specials",
-      "dialog_node": "node_6_1603004719982"
-    },
-    {
-      "type": "standard",
       "title": "email",
       "output": {
         "generic": [
@@ -501,6 +506,18 @@
       },
       "conditions": "@email",
       "dialog_node": "node_6_1603015283692"
+    },
+    {
+      "type": "standard",
+      "title": "Special",
+      "parent": "node_10_1602999327725",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@specials",
+      "dialog_node": "node_6_1603108203088"
     },
     {
       "type": "frame",
@@ -555,27 +572,7 @@
           {
             "values": [
               {
-                "text": "It costs 8 rupees."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_6_1603004719982",
-      "conditions": "@specials:Eggs",
-      "dialog_node": "response_10_1603005073290",
-      "previous_sibling": "response_6_1603005013717"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "Pandemic Shop Menu card\nSr. No.\tItem\tCost  (Rupees)\nFor Immediate recipe\n1\tBread\t30 \n2\tButter\t20 \n3\tEggs\t8 \n4\tJam\t25 \nVegetables\n5\tPumpkin\t40 \n6\tPalak\t35\n7\tPotato\t40\n8\tBeans\t40\n9\tBrinjal\t60\n10\tCucumber\t50\nGrocery\n11\tRice\t50\n12\tSugar\t40\n13\tWheat Aata\t80\n14\tPoha\t70\n\n"
+                "text": "1. Bread 30 rupees\n2. Butter 20 rupees\n3. Eggs 8 rupees\n4. Jam 25 rupees\n5. Pumpkin 40 rupees\n6. Palak 35 rupees\n7. Potato 40 rupees\n8. Beans 40 rupees\n9. Bringal 60 rupees\n10. Cucumber 50 rupees\n11. Rice 50 rupees\n12. Sugar 40 rupees\n13. Wheat Aata 80 rupees\n14. POHA 70 rupees"
               }
             ],
             "response_type": "text",
@@ -586,14 +583,14 @@
       "parent": "node_10_1602999327725",
       "conditions": "@enquiry:menu",
       "dialog_node": "response_1_1603001145484",
-      "previous_sibling": "node_6_1603004719982"
+      "previous_sibling": "node_6_1603108203088"
     },
     {
       "type": "response_condition",
       "output": {
         "generic": [
           {
-            "title": "Special items",
+            "title": "Special Items",
             "options": [
               {
                 "label": "Bread",
@@ -633,8 +630,8 @@
         ]
       },
       "parent": "node_10_1602999327725",
-      "conditions": "@enquiry:(special items)",
-      "dialog_node": "response_1_1603003221008",
+      "conditions": "@enquiry:specials",
+      "dialog_node": "response_1_1603108923055",
       "previous_sibling": "response_3_1603003058942"
     },
     {
@@ -693,26 +690,6 @@
           {
             "values": [
               {
-                "text": "It costs 25 rupees."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_6_1603004719982",
-      "conditions": "@specials:Jam",
-      "dialog_node": "response_3_1603005113652",
-      "previous_sibling": "response_10_1603005073290"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
                 "text": "For Immediate recipe\n1\tBread\t\n2\tButter\t \n3\tEggs\t\n4\tJam\t \n"
               }
             ],
@@ -725,6 +702,66 @@
       "conditions": "@enquiry:immediate",
       "dialog_node": "response_5_1603002855355",
       "previous_sibling": "response_2_1603002575394"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "It costs 20 rupees."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1603108203088",
+      "conditions": "@specials:Butter",
+      "dialog_node": "response_5_1603108308966",
+      "previous_sibling": "response_6_1603108263104"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "It costs 8 rupees."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1603108203088",
+      "conditions": "@specials:Eggs",
+      "dialog_node": "response_5_1603108361157",
+      "previous_sibling": "response_5_1603108308966"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "It costs 25 rupees."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1603108203088",
+      "conditions": "@specials:Jam",
+      "dialog_node": "response_5_1603108385617",
+      "previous_sibling": "response_5_1603108361157"
     },
     {
       "type": "response_condition",
@@ -761,29 +798,9 @@
           }
         ]
       },
-      "parent": "node_6_1603004719982",
+      "parent": "node_6_1603108203088",
       "conditions": "@specials:Bread",
-      "dialog_node": "response_6_1603004959854"
-    },
-    {
-      "type": "response_condition",
-      "output": {
-        "generic": [
-          {
-            "values": [
-              {
-                "text": "It costs 20 rupees."
-              }
-            ],
-            "response_type": "text",
-            "selection_policy": "sequential"
-          }
-        ]
-      },
-      "parent": "node_6_1603004719982",
-      "conditions": "@specials:Butter",
-      "dialog_node": "response_6_1603005013717",
-      "previous_sibling": "response_6_1603004959854"
+      "dialog_node": "response_6_1603108263104"
     },
     {
       "type": "response_condition",
